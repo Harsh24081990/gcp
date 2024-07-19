@@ -1,0 +1,31 @@
+BQ connect from Python script:- 
+Selecting or updating tables
+
+pip install google-cloud-bigquery
+--------------------------------------------
+from google.cloud import bigquery
+
+# Create a client object for interacting with BigQuery
+client = bigquery.Client()
+
+# Define your SQL query
+query = """
+SELECT *
+FROM `your_project_id.your_dataset.your_table`
+LIMIT 10
+"""
+
+# Execute the query
+query_job = client.query(query)
+
+# Fetch the results
+results = query_job.result()
+
+# Print the results
+for rows in results:
+    print(rows)
+-----------------------------------------------
+# In short we can write like this: -
+from google.cloud import bigquery
+ bigquery.Client().query(select * from table limit 10).result()
+===========================================================
