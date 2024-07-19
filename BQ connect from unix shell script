@@ -1,0 +1,27 @@
+==============================================================================================================
+=============================== BQ connect from unix shell script ============================================
+==============================================================================================================
+
+Selecting or updating tables
+
+#!/bin/bash
+
+# Set your project ID
+PROJECT_ID="your-project-id"
+
+# Set your dataset and table name
+DATASET="your_dataset"
+TABLE="your_table"
+
+# Run the bq query and store the result in a variable
+QUERY_RESULT=$(bq query --nouse_legacy_sql --format=json "SELECT * FROM \`$PROJECT_ID.$DATASET.$TABLE\` LIMIT 10")
+
+# Print the query result
+echo $QUERY_RESULT
+
+==============================================================================================================
+The bq query command runs the specified SQL query against the specified table.
+--nouse_legacy_sql flag indicates to use standard SQL syntax (recommended).
+--format=json flag specifies the output format of the query result.
+The result of the query is stored in the QUERY_RESULT variable, which you can then process further in your script.
+==============================================================================================================
