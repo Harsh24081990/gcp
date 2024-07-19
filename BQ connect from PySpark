@@ -1,3 +1,7 @@
+================================================================================================================
+============= Reading data from bq table =======================================================================
+================================================================================================================
+
 from pyspark.sql import SparkSession
 
 # Initialize Spark session
@@ -24,8 +28,8 @@ df.show()
 spark.stop()
 
 ================================================================================================================================================================
-================================================================================================================================================================
-## If The spark-bigquery connector is included in the Spark distribution used on Google Cloud Dataproc and other managed Spark environments by default. Then no need to connect bq connector using spark.conf.set
+## If The spark-bigquery connector is included in the Spark distribution used on Google Cloud Dataproc and other managed Spark environments by default. 
+##Then no need to connect bq connector using spark.conf.set
 
 from pyspark.sql import SparkSession
 # Initialize Spark session
@@ -49,14 +53,46 @@ spark.stop()
 
 
 
+
+================================================================================================================
+============= Reading only the selected columns from bq ========================================================
+================================================================================================================
+
+from pyspark.sql import SparkSession
+
+# Initialize Spark session
+spark = SparkSession.builder \
+    .appName("Read selected columns with SQL from BigQuery") \
+    .getOrCreate()
+
+# Define BigQuery SQL query to execute
+sql_query = """
+    SELECT column1, column2, column3
+    FROM your_project.your_dataset.your_table
+    WHERE conditions_here
+"""
+
+# Read data from BigQuery into a DataFrame, executing the SQL query
+df = spark.read.format("bigquery") \
+    .option("query", sql_query) \
+    .load()
+
+# Show the first few rows of the DataFrame
+df.show()
+
+# Stop Spark session
+spark.stop()
+
+
+
+
 ================================================================================================================
 ============= Inserting data into BQ table from flat file ======================================================
 ================================================================================================================
+## Inserting into tables from a flat file:-
 
-Inserting into tables from a flat file:-
-
---create spark session. 
--- create a dataframe:-
+#--create spark session. 
+#-- create a dataframe:-
 df = spark.read.option("delimiter", "|").csv(data_path)
 -- insert into table:-
 df.write \ 
@@ -65,8 +101,8 @@ df.write \
 	.option("table", f"{project_id}.{dataset_id}.{table_name}") \ 
 	.save()
 -------------------------------------------------------------
+# Example:-
 from pyspark.sql import SparkSession
-
 # Initialize SparkSession
 spark = SparkSession.builder \
     .appName("Insert into BigQuery table from .DAT file") \
@@ -92,6 +128,8 @@ df.write \
 
 # Stop SparkSession
 spark.stop()
+
+
 ===========================================================================
 Note: In PySpark, the spark-big query connector can directly interact with BigQuery without needing to import bigquery and storage modules explicitly, unlike in regular Python code where you need to import these modules from the Google Cloud client libraries.
 spark-bigquery connector is not explicitly mentioned in the provided PySpark code. The PySpark code assumes that you have already configured the spark-bigquery connector in your Spark environment.
