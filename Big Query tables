@@ -1,0 +1,15 @@
+======================================================================
+================== How to check BQ tables and columns ================
+======================================================================
+To know the metadata of big query tables present in <dataset>.
+Select * from <Project_id>.<dataset>.INFORMATION_SCHEMA.TABLES
+Select * from <Project_id>.<dataset>.INFORMATION_SCHEMA.COLUMNS
+Ex. select * from hsbc-7337771-fincrimedata-dev.tmis_exp_stage_je_hsbc_dev.INFORMATION_SCHEMA.COLUMNS
+--where table_name like '%stage_account%'
+We get following information from this query: -
+Table_catalog (Project id under which table is present)
+Table_schema (dataset name under which table is present)
+Table_name
+Table_type 
+Etc. 
+======================================================================
