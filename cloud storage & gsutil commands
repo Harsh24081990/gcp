@@ -1,0 +1,25 @@
+Google Cloud Storage Services
+
+buckets—logical namespaces that are able to hold one or more objects. While a bucket can have multiple objects, an object can only belong to just one bucket.
+Availability of data (Can be ensured by defining Storage Class and Location) --- 
+storage class : choose Standard, Nearline, or Coldline.
+Location : choose region, dual-region or multi-region. 
+
+Ways to connect to Google Cloud Platform: -
+1.  Google cloud console URL
+2.  CLI (Command Line Interface) (gsutil command)
+Using gsutil commands :-
+Install and setup Google Cloud SDK
+To verify installation is successful. Type below command in terminal (cmd in case of windows OS) :-
+   gsutil -v
+gsutil version: 4.67
+   gcloud auth login – Directed to the browser to authenticate. 
+   gcloud config set project <project_name> ---- Set or change the current GCP Project under which we need to work. 
+   gsutil help <any gsutil command> ---- to know the options of that command. 
+   gsutil mb gs://<YOUR_BUCKET_NAME>  ---- Make Bucket where Your_bucket_name must be unique. 
+   gsutil cp * gs://<YOUR_BUCKET_NAME> ---- copy all the file in pwd to gcp bucket. 
+   gsutil cp <file1.txt> gs://<YOUR_BUCKET_NAME>  ---- make sure command should be triggered from the directory where file is present or else give the complete file_path/file_name if running the file from any other location. 
+   gsutil ls gs://<YOUR_BUCKET_NAME> ---- list all the objects present in my bucket. 
+   gsutil rm gs://<YOUR_BUCKET_NAME>/* ---- to remove all the files inside the bucket.
+   gsutil rb gs://<YOUR_BUCKET_NAME>  ---- Remove Bucket. deleting the Cloud Storage bucket
+==============================================================
