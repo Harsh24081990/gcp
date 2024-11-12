@@ -1,4 +1,4 @@
-## How to use `gsutil` commands in python script to take backup of source file before processing ?
+## How to use `gsutil` and other shell commands in python script to take backup of source file before processing ?
 
 ### Shortened Python Script Using a Single String for the Command:
 
